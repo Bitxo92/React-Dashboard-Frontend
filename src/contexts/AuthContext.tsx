@@ -46,7 +46,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         await new Promise((resolve) => setTimeout(resolve, 500));
 
         // Mock authentication - demo credentials
-        if (inputEmail === "user@example.com" && inputPassword === "password") {
+        if (inputEmail === "user@mail.com" && inputPassword === "abc123.") {
           setIsAuthenticated(true);
           setUsername(inputEmail.split("@")[0]);
           return true;

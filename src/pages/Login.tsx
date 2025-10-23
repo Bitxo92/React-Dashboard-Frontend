@@ -102,9 +102,9 @@ export default function Login() {
           <p className="text-sm text-blue-700 dark:text-blue-300">
             <strong>Demo credentials:</strong>
             <br />
-            Email: user@example.com
+            Email: user@mail.com
             <br />
-            Password: password
+            Password: abc123.
           </p>
         </div>
       </div>
