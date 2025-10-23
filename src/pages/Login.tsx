@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import { loginSchema, type LoginFormData } from "@/lib/schemas";
 import { useAuth } from "@/contexts/AuthContext";
 
@@ -89,6 +90,22 @@ export default function Login() {
             {errors.password && (
               <p className="text-sm text-red-500">{errors.password.message}</p>
             )}
+          </div>
+
+          {/* Remember Me and Forgot Password */}
+          <div className="flex items-center justify-between px-4">
+            <div className="flex items-center space-x-2">
+              <Checkbox id="remember" />
+              <Label htmlFor="remember" className="font-normal cursor-pointer">
+                Remember me
+              </Label>
+            </div>
+            <a
+              href="#"
+              className="text-sm text-primary underline-offset-4 hover:underline"
+            >
+              Forgot password?
+            </a>
           </div>
 
           {/* Submit button */}
