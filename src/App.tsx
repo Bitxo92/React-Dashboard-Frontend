@@ -5,11 +5,13 @@ import Users from "@/pages/Users";
 import Settings from "@/pages/Settings";
 import NotFound from "@/pages/NotFound";
 import "./App.css";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="users" element={<Users />} />
