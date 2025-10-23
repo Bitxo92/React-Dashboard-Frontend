@@ -1,9 +1,10 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "./mode-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
-import { Home, Users, Settings, LayoutDashboard } from "lucide-react";
+import { Home, Users, Settings, LayoutDashboard, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -14,6 +15,17 @@ const navLinks = [
 
 export default function Layout() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    try {
+      // Clear auth/session data (adjust keys if you store specific tokens)
+      localStorage.clear();
+    } catch (e) {
+      /* ignore */
+    }
+    navigate("/");
+  };
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
@@ -56,16 +68,29 @@ export default function Layout() {
 
           {/* Avatar at bottom */}
           <div className="p-4">
-            <div className="flex items-center gap-3 px-3 py-2">
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" alt="User" />
-                <AvatarFallback>AD</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium truncate">Admin User</p>
-                <p className="text-xs text-muted-foreground truncate">
-                  admin@example.com
-                </p>
+            <div className="flex items-center gap-3 px-3 py-2 justify-between">
+              <div className="flex items-center gap-3 flex-1 min-w-0">
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                  <AvatarFallback>AD</AvatarFallback>
+                </Avatar>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">Admin User</p>
+                  <p className="text-xs text-muted-foreground truncate">
+                    admin@example.com
+                  </p>
+                </div>
+              </div>
+
+              <div className="ml-3">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={handleLogout}
+                  aria-label="Log out"
+                >
+                  <LogOut className="h-4 w-4" />
+                </Button>
               </div>
             </div>
           </div>
