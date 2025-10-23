@@ -6,6 +6,7 @@ import { Separator } from "@/components/ui/separator";
 import { Home, Users, Settings, LayoutDashboard, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/contexts/AuthContext";
 
 const navLinks = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -16,15 +17,11 @@ const navLinks = [
 export default function Layout() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const handleLogout = () => {
-    try {
-      // Clear auth/session data (adjust keys if you store specific tokens)
-      localStorage.clear();
-    } catch (e) {
-      /* ignore */
-    }
-    navigate("/");
+    logout();
+    navigate("/login");
   };
 
   return (
